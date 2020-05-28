@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="nina-portfolio">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nina Scohy - Portfolio</title>
+    <link rel="stylesheet" href="pwa.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gruppo">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="sw.js"></script>
+</head>
+
+<body>
+
+<header>
+  <nav>
+    <h1><a href="index.html">Nina Scohy | web developer</a></h1>
+    <div class="topnav" id="myTopnav">
+      <a href="index.html" class="active">Home</a>
+      <a href="#about">About</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#contact">Contact</a>
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i></a>
+    </div>
+  </nav>
+</header>
+
+<section id="about">
+  <h3>Interested in freelance job opportunity</h3>
+  <label for="backgrounds">Select background color:</label>
+  <select id="backgrounds">
+    <option value="0">Smoke</option>
+    <option value="green">Green</option>
+    <option value="darkgreen">Dark Green</option>
+  </select>
+  
+  <article class="row-about">
+  <h2>About</h2>
+  <aside class="column-profile"><img src="nina.jpg" alt="Nina profile picture" style="width:100%;height:auto;"></aside>
+  <aside class="column-about">
+    <blockquote>Certified in advanced web development techniques, mobile web application and web programming application from City College San Francisco. Very interested in learning and expands my knowledge from creating projects. Experience in HTML, CSS, JavaScript, JavaScript Frameworks, XML, PHP, ASP.NET, CMS, Unix/Linux and MySQL. Have backgrounds in photography, video production, and graphic design. Interested in freelance job opportunity.</blockquote>
+  </aside>
+  </article>
+</section>
+
+<section id="portfolio">
+  <h2>Portfolio</h2>
+  <article class="row">
+    <h4>CMS websites created with WordPress &amp; SquareSpace</h4>
+    <aside class="column">
+      <h3>Created with WordPress</h3>
+      <a href="https://www.23nutritiontherapy.com/" target="_blank">
+        <img src="gayatri_website.png" alt="Nutrition Website" style="width:100%;height:auto;border:0">
+      </a>
+    </aside>
+    <aside class="column">
+      <h3>Created with SquareSpace</h3>
+      <a href="https://www.vitalrecords.ws/" target="_blank">
+        <img src="wayne_website.png" alt="Music Records Website" style="width:100%;height:auto;border:0">
+      </a>
+    </aside>
+  </article>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <article class="row">
+    <h4>Please use this form to reach me</h4>
+    <aside id="form" class="column-form1">
+      <form name="contact" method="POST" data-netlify="true">
+        <p>
+          <label>Your Name: <input type="text" name="name" placeholder="Your name.."/></label>   
+        </p>
+        <p>
+          <label>Your Email: <input type="email" name="email" placeholder="Your email address.."/></label>
+        </p>
+        <p>
+          <label>Upload File: <input type="file" id="myfile" name="myfile"></label>
+        </p>
+        <p>
+          <label>Message: <textarea name="message"></textarea></label>
+        </p>
+        <p>
+          <input type="submit" value="Submit">
+        </p>
+      </form>
+    </aside>
+    <aside id="message" class="column-form2"> 
+      <h3>Hello!</h3>
+      <p>Please contact me if you have any question about your project. Don't forget to add your name and email address, so I can reply to your message. You have the option to upload a file.</p>
+      <p>Thank you!</p>
+    </aside>
+  </article>
+</section>
+
+<footer>
+  <p>2020 - Nina Scohy</p>
+</footer>
+
+<script>
+
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js');
+    }
+
+    $(document).ready(function(){ 
+
+      var n = $("select option:selected").val();
+  
+      $("select").on('change', function() {
+        if (this.value == 'green') {
+            $("body").css("background", '#8CDBA8').css("color", 'black');
+        }else if (this.value == 'darkgreen'){
+            $("body").css("background", '#37B062').css("color", 'white');
+        } else {
+          $("body").css("background", 'whitesmoke').css("color", 'black');
+        }
+    });
+  
+  });
+
+  // form
+
+  $("#my-form").submit(function(e) {
+    e.preventDefault();
+  
+    var $form = $(this);
+    $.post($form.attr("action"), $form.serialize()).then(function() {
+      alert("Thank you!");
+    });
+  });
+
+  // nav
+  function myFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+      x.className += " responsive";
+    } else {
+      x.className = "topnav";
+    }
+  }
+
+</script>
+<script src="main.js"></script>
+</body>
+</html>
+
